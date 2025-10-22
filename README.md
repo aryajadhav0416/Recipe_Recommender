@@ -18,7 +18,7 @@ A lightweight ingredient-based recipe recommendation system built using **Stream
 
 ## 📊 Dataset
 
-The dataset is sourced from [Kaggle: Recipe Ingredients and Directions](https://www.kaggle.com/datasets/kaggle/recipe-ingredients-and-directions). It contains over 62,000 recipes with structured information such as ingredients, directions, categories, and descriptions.
+The dataset is sourced from [Kaggle: Recipe Dataset-64k dishes](https://www.kaggle.com/datasets/prashantsingh001/recipes-dataset-64k-dishes). It contains over 62,000 recipes with structured information such as ingredients, directions, categories, and descriptions.
 
 > **Note:** Only 8,000 records were used from the dataset for model building in this project.
 
