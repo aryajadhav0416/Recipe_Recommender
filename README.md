@@ -1,18 +1,18 @@
-# 🍳 Recipe Recommender Web App
+# 🍳 AI-Powered Recipe Recommendation System
 
-A lightweight ingredient-based recipe recommendation system built using **Streamlit**, **TF-IDF**, and **Cosine Similarity**. Simply input the ingredients you have in your kitchen, and the app recommends recipes you can make — with inline details of ingredients and steps!
-
-> ⚠️ This project uses **only 1 sampled chunk (~8,000 recipes)** from a much larger dataset for quicker prototyping and training. You can expand it later with the full dataset.
+An **NLP-based intelligent recipe recommender** built using **Sentence Transformers** and **Streamlit**.  
+This system suggests the best matching recipes based on user-provided ingredients — using **semantic similarity + ingredient overlap confidence** to understand meaning, not just keywords.
 
 ---
 
 ## 🚀 Features
 
-- 🔍 **Ingredient-based search:** Get recipe suggestions based on what you have at home.
-- 💡 **TF-IDF + Cosine Similarity:** Matches input ingredients to recipes using vector similarity.
-- 📋 **Inline recipe viewer:** No page reloads — view full recipe (title, category, ingredients, directions) right on the same page.
-- 📊 **Similarity score:** Shows how closely a recipe matches your ingredients.
-- ⚡ **Optimized for speed:** Uses only a sampled subset of ~8,000 recipes from 62K+ for development/testing.
+✅ **Natural Language Processing (NLP):** Understands ingredient meaning (e.g., “tomato” ≈ “tomatoes”)  
+✅ **Semantic Embeddings:** Uses `all-MiniLM-L6-v2` model from Sentence Transformers  
+✅ **Hybrid Confidence Score:** 70% semantic similarity + 30% ingredient overlap  
+✅ **Duplicate Removal:** Filters duplicate recipe names automatically  
+✅ **Interactive Streamlit UI:** Clean interface with confidence bars, ingredient layout, and search history  
+✅ **Modular Structure:** Separate files for preprocessing, recommendation logic, and app interface  
 
 ---
 
@@ -37,22 +37,37 @@ The dataset is sourced from [Kaggle: Recipe Dataset-64k dishes](https://www.kagg
 
 ---
 
-## 🧠 How It Works
+## ⚙️ Tech Stack
 
-1. **User inputs ingredients** (e.g., `"chicken, rice, onion"`).
-2. **Text cleaning & preprocessing** using NLTK (lemmatization, stopword removal).
-3. **TF-IDF vectorization** of ingredients in the recipe dataset.
-4. **Cosine similarity** between input and recipe vectors.
-5. **Top 5 recipe matches** are displayed with details on the same page.
+| Component | Description |
+|------------|-------------|
+| **Python** | Core programming language |
+| **Streamlit** | Web framework for interactive UI |
+| **Sentence Transformers** | Pre-trained model for semantic similarity |
+| **PyTorch** | Backend for embeddings and tensor math |
+| **NLTK** | Tokenization, stopword removal, and lemmatization |
+| **Pandas** | Data manipulation and preprocessing |
 
 ---
 
-## 🧪 Tech Stack
+## 🧠 How It Works
 
-- **Frontend**: Streamlit
-- **ML/NLP**: TF-IDF (Scikit-learn), Cosine Similarity
-- **Data Cleaning**: NLTK (tokenization, stopwords, lemmatization)
-- **Persistence**: Pickle files for model, matrix, and data
+1. **Preprocessing (`preprocess.py`)**
+   - Cleans ingredient text (tokenization, lemmatization, stopword removal)
+   - Generates embeddings using `SentenceTransformer('all-MiniLM-L6-v2')`
+   - Saves processed CSV + embeddings (`.pt` file)
+
+2. **Recommendation (`recommend.py`)**
+   - Computes semantic similarity between user ingredients and all recipes
+   - Calculates ingredient overlap confidence
+   - Combines both into a final confidence score
+   - Removes duplicate titles and returns top matches
+
+3. **Streamlit App (`app.py`)**
+   - Accepts ingredient input from the user
+   - Displays top recipe matches with confidence bars
+   - Expands to show ingredient lists neatly
+   - Includes filters, search history, and dynamic UI elements
 
 ---
 
