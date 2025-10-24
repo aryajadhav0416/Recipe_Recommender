@@ -90,13 +90,15 @@ The dataset is sourced from [Kaggle: Recipe Dataset-64k dishes](https://www.kagg
    pip install -r requirements.txt
    ```
 
-3. **Run the model training notebook:**
-   - Open the notebook in Jupyter or VSCode:
+3. **Preprocess Dataset:**
+   - Run the script once to generate embeddings:
    ```bash
-   jupyter notebook model_train.ipynb
+   python preprocess.py
    ```
+   
 4. Run the Streamlit web app:
    ```bash
    streamlit run app.py
    ```
+   
 5. Open the URL shown in your browser and start discovering delicious recipes based on your ingredients!
